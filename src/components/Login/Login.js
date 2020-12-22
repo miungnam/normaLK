@@ -4,15 +4,21 @@ import './login.css'
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
 
 const Login = (props) => {
 
-    const {actions, usernameError, passwordError, user} = props;
-    console.log(props);
+    const {actions, usernameError, passwordError, isError } = props;
 
     const onChange = event => {
         actions.changeLoginField(event.target.name, event.target.value)
     };
+
+     const renderError = () => (<Typography
+        component="p"
+        color="error"
+        align="center"
+    >Неверный пароль или логин! </Typography>);
 
     return (
         <div className="login-body">
@@ -51,6 +57,7 @@ const Login = (props) => {
                         Войти
                     </Button>
                 </Box>
+                {isError && renderError()}
             </Card>
         </div>
     );

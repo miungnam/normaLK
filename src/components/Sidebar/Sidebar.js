@@ -60,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
         flexShrink: 0,
         whiteSpace: "nowrap",
         background: 'linear-gradient(180deg, #374F6B 41.15%, rgba(55, 79, 107, 0.64) 100%)'
-
     },
     drawerOpen: {
         width: drawerWidth,
@@ -90,10 +89,10 @@ const useStyles = makeStyles((theme) => ({
 
     },
     toolbar2: {
-color:"white"
+        color: "white"
     },
     toolbar3: {
-color:"white"
+        color: "white"
     },
     content: {
         flexGrow: 1,
@@ -106,12 +105,6 @@ color:"white"
         marginLeft: 140,
         marginTop: 0
     },
-    mainToolbar: {
-        // background: 'linear-gradient(180deg, #374F6B 41.15%, rgba(55, 79, 107, 0.64) 100%)'
-    },
-    bgsidebar : {
-        // background: 'linear-gradient(180deg, #374F6B 41.15%, rgba(55, 79, 107, 0.64) 100%)'
-    }
 }));
 
 export default function MiniDrawer() {
@@ -129,7 +122,7 @@ export default function MiniDrawer() {
         setOpen(false);
     };
     return (
-        <div  className={classes.root}>
+        <div className={classes.root}>
             {!MobileVersionPlatform && (
 
                 <Drawer
@@ -146,37 +139,43 @@ export default function MiniDrawer() {
                     }}
 
                 >
-                    <div style={{background: 'linear-gradient(180deg, #374F6B 41.15%, rgba(55, 79, 107, 0.64) 100%)',height:"100vh"}} className={classes.mainToolbar}>
-                    <div className={classes.toolbar}>
-                        <IconButton
-                            onClick={open == false ? handleDrawerOpen : handleDrawerClose}
-                        >
-                            {open == false ? <MenuIcon style={{color:"white"}}/> : <ChevronLeftIcon style={{color:"white"}}/>}
-                        </IconButton>
-                    </div>
-                    <Divider/>
-                    <List className={classes.toolbar2}>
-                        {["Главная", "Starred", "Send email", "Drafts"].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon style={{color:"white"}}/> : <MailIcon style={{color:"white"}}/>}
-                                </ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItem>
-                        ))}
-                    </List>
-                    <Divider/>
-                    <List className={classes.toolbar3}>
-                        {["All mail", "Trash", "Spam"].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon style={{color:"white"}}/> : <MailIcon style={{color:"white"}}/>}
-                                </ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItem>
-                        ))}
-                    </List>
+                    <div style={{
+                        background: 'linear-gradient(180deg, #374F6B 41.15%, rgba(55, 79, 107, 0.64) 100%)',
+                        height: "100vh"
+                    }} className={classes.mainToolbar}>
+                        <div className={classes.toolbar}>
+                            <IconButton
+                                onClick={open === false ? handleDrawerOpen : handleDrawerClose}
+                            >
+                                {open === false ? <MenuIcon style={{color: "white"}}/> :
+                                    <ChevronLeftIcon style={{color: "white"}}/>}
+                            </IconButton>
                         </div>
+                        <Divider/>
+                        <List className={classes.toolbar2}>
+                            {["Главная", "Starred", "Send email", "Drafts"].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>
+                                        {index % 2 === 0 ? <InboxIcon style={{color: "white"}}/> :
+                                            <MailIcon style={{color: "white"}}/>}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text}/>
+                                </ListItem>
+                            ))}
+                        </List>
+                        <Divider/>
+                        <List className={classes.toolbar3}>
+                            {["All mail", "Trash", "Spam"].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>
+                                        {index % 2 === 0 ? <InboxIcon style={{color: "white"}}/> :
+                                            <MailIcon style={{color: "white"}}/>}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text}/>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </div>
                 </Drawer>
             )}
 
@@ -207,7 +206,7 @@ export default function MiniDrawer() {
                         </Accordion>
                     </div>
                 )}
-                <div >
+                <div>
                     <Header/>
                     <br/>
                     <ContactInfo/>

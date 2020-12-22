@@ -1,6 +1,7 @@
 import {merge} from 'extend-merge';
 import createReducer from "../utils/base";
 import {
+    CLEAR_ERRORS,
     FAILED_VALIDATION,
     LOGIN_CHANGE_FIELD,
     LOGIN_REQUEST_FAILED,
@@ -13,6 +14,8 @@ const INITIAL_STATE = {
     password: "",
     emailError: "",
     passwordError: "",
+    token: "",
+    isError: false
 };
 
 export default createReducer(
@@ -34,6 +37,12 @@ export default createReducer(
         [FAILED_VALIDATION]: (state, action) => merge({}, state, {
             emailError: action.emailError,
             passwordError: action.passwordError
+        }),
+
+        [CLEAR_ERRORS]: (state, action) => merge({}, state, {
+            usernameError: "",
+            passwordError: "",
+            isError: false
         }),
 
     }, INITIAL_STATE);
