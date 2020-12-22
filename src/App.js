@@ -1,0 +1,26 @@
+import React from 'react'
+import './App.css'
+import Main from './components/Main/Main'
+import Login from './redux/containers/LoginContainer/login'
+import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom'
+import Registrationn from './components/Registr/Registrationn'
+import { createBrowserHistory } from "history";
+
+export const history = createBrowserHistory();
+
+const App = () => {
+	return (
+		<BrowserRouter>
+			<div className="app">
+				<Switch>
+					<Route path="/auth" component={Registrationn} exact />
+					<Route path="/login" component={Login} exact />
+					<Route path="/main" component={Main} exact />
+					<Redirect to="/main" />
+				</Switch>
+			</div>
+		</BrowserRouter>
+	)
+}
+
+export default App
