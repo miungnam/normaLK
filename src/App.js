@@ -3,7 +3,7 @@ import './App.css'
 import Main from './components/Main/Main'
 import Login from './redux/containers/LoginContainer/login'
 import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom'
-import Registrationn from './components/Registr/Registrationn'
+import Registrationn from './redux/containers/Register/Register'
 
 const App = () => {
 	return (
