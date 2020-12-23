@@ -13,7 +13,7 @@ const App = () => {
 					<Route path="/auth" component={Registrationn} exact />
 					<Route path="/login" component={Login} exact />
 					<Route path="/main" component={Main} exact />
-					<Redirect to="/main" />
+					<Redirect to="/login" />
 				</Switch>
 			</div>
 		</BrowserRouter>

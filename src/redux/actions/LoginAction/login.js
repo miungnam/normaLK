@@ -1,6 +1,8 @@
 import * as axios from "axios";
 import {USER_TOKEN_KEY} from "../../constant/storage_key";
-import {history} from "../../../index";
+import createBrowserHistory from 'history/createBrowserHistory'
+
+export const history = createBrowserHistory()
 
 export const LOGIN_CHANGE_FIELD = "LOGIN_CHANGE_FIELD/";
 export const USERNAME_FILED = "USERNAME_FILED";
@@ -57,7 +59,7 @@ export const login = () => (dispatch, getState) => {
                 const {token} = result.data;
                 dispatch({ type: LOGIN_REQUEST_SUCCESS, token });
                 localStorage.setItem(USER_TOKEN_KEY, token);
-                history.push('/main');
+                window.location.href("/main")
             }).catch(({response}) => {
             dispatch({type: LOGIN_REQUEST_FAILED, error: response.data});
         });
