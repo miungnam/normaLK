@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0px 0px 50px 0px;
     border-radius: 5px;
     position: relative;
-    box-shadow: 5px 4px 8px 0px black;
+    box-shadow: 5px 4px 8px 0px rgb(88, 86, 86);
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 40px;
@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .newsitem_img img {
     /*object-fit: cover;*/
-    width: 70%;
+    width: 60%;
     height: 100%;
     display: block;
 }
@@ -302,7 +302,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .newsitem_img {
         margin: 10px 0px 0px 0px;
-        width: 280px;
         height: 200px;
     }
 }

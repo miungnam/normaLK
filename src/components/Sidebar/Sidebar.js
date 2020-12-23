@@ -112,7 +112,7 @@ export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
-    const MobileVersionPlatform = useMediaQuery("(max-width:585px)");
+    const MobileVersionPlatform = useMediaQuery("(max-width:768px)");
 
     const handleDrawerOpen = () => {
         setOpen(true);
