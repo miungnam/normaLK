@@ -10,7 +10,7 @@ import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom'
 const App = () => {
 	const dispatch = useDispatch()
 	React.useEffect(()=>{
-		dispatch(getData(window.localStorage.getItem()))
+		dispatch(getData(window.localStorage.getItem("token")))
 		 },[getData,window.localStorage])
 	return (
 		<BrowserRouter>

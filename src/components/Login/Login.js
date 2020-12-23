@@ -31,6 +31,9 @@ const Login = (props) => {
 				})
 		}
 	}
+	React.useEffect(()=>{
+		dispatch(getData(window.localStorage.getItem("token")))
+		 },[getData,window.localStorage])
 	return (
 		<div className="login-body">
 			<Card className="login-container">
