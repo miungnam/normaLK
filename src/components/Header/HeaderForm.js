@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
+    marginLeft: '-15px',
     flexGrow: 1,
     alignSelf: 'flex-end',
     display: 'none',
@@ -59,9 +60,9 @@ export default function ProminentAppBar() {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" style={{}}>
-        <Toolbar className={classes.toolbar}>
+    <div className={classes.root} >
+      <AppBar position="static" >
+        <Toolbar className={classes.toolbar} >
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -71,13 +72,14 @@ export default function ProminentAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h5" noWrap>
-              <AccountBoxIcon style={{height: '100px', width: '100px'}}  />
-            <Button color="inherit">О себе</Button>
-            <Button color="inherit">Группы</Button>
-            <Button color="inherit">Фото</Button>
-            <Button color="inherit">Подписи</Button>
-            <Button color="inherit">Настройки</Button>
+          <Typography  className={classes.title} variant="h5" noWrap>
+              <AccountBoxIcon style={{height: '100px', width: '100px', }}  />
+                <Button  color="inherit">О себе</Button>
+                <Button color="inherit">Группы</Button>
+                <Button color="inherit">Фото</Button>
+                <Button color="inherit">Подписи</Button>
+                <Button color="inherit">Настройки</Button>
+           
           </Typography>
         </Toolbar>
       </AppBar>

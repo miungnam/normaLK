@@ -20,7 +20,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Header from "../Header/Header";
 import ContactInfo from "../ContactInfo/ContactInfo";
 import News from "../News/News";
-import Footer from "../Footer/footer";
+import Footer from "../Footer/Footer";
 
 const drawerWidth = 240;
 
