@@ -1,11 +1,6 @@
 import { combineReducers } from 'redux'
-import notifyReducer from 'react-redux-notify'
-import login from './Login/login'
-import register from './Register/Register'
+import getUserData from './getUserData'
 
 export default combineReducers({
-	notifyReducer,
-	login,
-	register
+	getUserData,
 })
-

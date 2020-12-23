@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -110,8 +110,6 @@ export default function MiniDrawer(props) {
 	const classes = useStyles()
 	const theme = useTheme()
 	const [open, setOpen] = React.useState(true)
-	const [isExist, setExist] = React.useState(false)
-	const [user, setUser] = React.useState()
 
 	const MobileVersionPlatform = useMediaQuery('(max-width:768px)')
 
@@ -122,22 +120,8 @@ export default function MiniDrawer(props) {
 	const handleDrawerClose = () => {
 		setOpen(false)
 	}
-	useEffect(()=>{
-		fetch(`https://unnamed-project-999.herokuapp.com/api/auth/users/me/?`, {
-			method: 'GET',
-			headers: { 'Authorization': `Token ${window.localStorage.getItem('token')}` },
-		  })
-		.then((response) => response.json())
-		.then((data) =>{
-		 setUser(data)
-		 setExist(true)
-		})
-		  .catch((err)=>{
-			setExist(false)
-		  })
-	},[])
 	return (
-	isExist ?	<div className={classes.root}>
+		<div className={classes.root}>
 			{!MobileVersionPlatform && (
 				<Drawer
 					variant="permanent"
@@ -208,18 +192,25 @@ export default function MiniDrawer(props) {
 
 			<main className={classes.content}>
 				{MobileVersionPlatform && (
-					<div  className={classes.root2}>
-						<Accordion style={{background:"linear-gradient(rgb(55, 79, 107) 41.15%, rgba(55, 79, 107, 0.64) 100%)",marginTop:"-10px"}}>
+					<div className={classes.root2}>
+						<Accordion
+							style={{
+								background: 'linear-gradient(rgb(55, 79, 107) 41.15%, rgba(55, 79, 107, 0.64) 100%)',
+								marginTop: '-10px'
+							}}
+						>
 							<AccordionSummary
 								aria-controls="panel1a-content"
 								id="panel1a-header"
-								expandIcon={<ExpandMoreIcon style={{color:"white"}} />}
+								expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
 							>
-								<MenuIcon style={{color:"white"}}/>
-								<Typography style={{color:"white"}} className={classes.mobileTitle}>Личный кабинет</Typography>
+								<MenuIcon style={{ color: 'white' }} />
+								<Typography style={{ color: 'white' }} className={classes.mobileTitle}>
+									Личный кабинет
+								</Typography>
 							</AccordionSummary>
 							<Divider />
-							<List style={{color:"white"}}>
+							<List style={{ color: 'white' }}>
 								{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
 									<ListItem button key={text}>
 										<ListItemText primary={text} />
@@ -237,6 +228,6 @@ export default function MiniDrawer(props) {
 					<Footer />
 				</div>
 			</main>
-		</div>:<div>Не зарегистрирован</div>
+		</div>
 	)
 }

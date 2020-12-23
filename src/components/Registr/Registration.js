@@ -124,8 +124,8 @@ export default function Registration() {
           <FormControl className={classes.radio} styles={{textAlign: 'left'}} component="fieldset">
             <FormLabel component="legend">Пол</FormLabel>
             <RadioGroup color="secondary" row aria-label="gender" name="gender1">
-              <FormControlLabel value="male" control={<Radio />} label="М" />
-              <FormControlLabel value="female" control={<Radio />} label="Ж" />
+              <FormControlLabel value="Male" control={<Radio />} label="М" />
+              <FormControlLabel value="Female" control={<Radio />} label="Ж" />
             </RadioGroup>
           </FormControl>
         </Grid>
