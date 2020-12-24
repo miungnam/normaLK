@@ -51,31 +51,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const steps = ['Базовая информация', ];
-
-function getStepContent() {
-  
-      return <Registration />;
-    // case 1:
-    //   return <PaymentForm />;
-    // case 2:
-    //   return <Review />;
-    // default:
-    //   throw new Error('Unknown step');
-  }
-
 export default function Registrationn(props) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-     props.history.push('main')
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
-
   return (
     <div className="login-body">
       <CssBaseline />
@@ -86,37 +63,8 @@ export default function Registrationn(props) {
           <Typography className={classes.mainTittle} component="h2" variant="h4" align="center">
             Регистрация
           </Typography>
-
           <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Спасибо за заполнение формы регистрации
-                </Typography>
-                <Typography variant="subtitle1">
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {/*{activeStep === steps.length - 1 ? 'Submit' : 'Next'}*/}
-                    Зарегистрироваться
-                  </Button>
-                </div>
-              </React.Fragment>
-            )}
+            <Registration {...props} />
           </React.Fragment>
         </Paper>
       </main>
