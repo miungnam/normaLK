@@ -41,7 +41,7 @@ const News = () => {
 						<div className="newsItem_wrapper">
 							<div className="newsItem_header">
 								<div className="newsitem_header_title">{itemState.name}</div>
-								<i onClick={() => setOpen(false)} className="fas fa-times"></i>
+								<i onClick={() => setOpen(false)} style={{color:"black"}} className="fas fa-times"></i>
 							</div>
 							<div className="newsitem_desc">{itemState.description}</div>
 							<div className="newsitem_img">
