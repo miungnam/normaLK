@@ -32,7 +32,7 @@ export const changeRegisterField = (name, value) => dispatch => {
     dispatch(changeField(name, value))
 };
 
-export const validateLogin = (last_name, email, password, password2) => {
+export const validateLogin = ( email, password, password2) => {
     let emailError = "";
     let last_name = "";
     let passwordError = "";
@@ -52,7 +52,7 @@ export const register = () => (dispatch, getState) => {
     dispatch({type: CLEAR_ERRORS});
     const {email, password, last_name} = getState().register;
 
-    const {emailError, passwordError, last_name} = validateLogin(email, password, last_name);
+    const {emailError, passwordError} = validateLogin(email, password, last_name);
     const baseURL = 'https://unnamed-project-999.herokuapp.com/api/auth/users/login/'
 
     if (!emailError && !passwordError && last_name) {
