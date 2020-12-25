@@ -6,7 +6,10 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
+import {NavLink} from "react-router-dom";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     radio: {
@@ -19,117 +22,146 @@ const useStyles = makeStyles({
 
 })
 
-export default function Registration() {
+export default function Registration(props) {
 
-    const classes = useStyles ()
+    const classes = useStyles();
+    const {actions} = props;
+    console.log(actions);
+    const onChange = event => {
+        actions.changeRegisterField(event.target.name, event.target.value)
+    };
 
-  return (
-    <React.Fragment>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="Имя"
-            fullWidth
-            autoComplete="given-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Фамилия"
-            fullWidth
-            autoComplete="family-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="FatherName"
-            name="FatherName"
-            label="Отчество"
-            fullWidth
-            autoComplete="father-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Адрес электронной почты"
-            fullWidth
-            autoComplete="shipping address-line1"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Ваш Адрес"
-            fullWidth
-            autoComplete="shipping address-line2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="Город"
-            fullWidth
-            autoComplete="shipping address-level2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required 
-            id="state"
-            name="state" 
-            label="Регион" 
-            fullWidth />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Страна"
-            fullWidth
-            autoComplete="shipping country"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required 
-            id="phoneNumber"
-            name="phoneNumber" 
-            label="Номер телефона" 
-            fullWidth />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required 
-            id="age"
-            name="age" 
-            label="Дата рождения" 
-            fullWidth />
-        </Grid>
-        <Grid item xs={12} sm={6} >
-          
-          <FormControl className={classes.radio} styles={{textAlign: 'left'}} component="fieldset">
-            <FormLabel component="legend">Пол</FormLabel>
-            <RadioGroup color="secondary" row aria-label="gender" name="gender1">
-              <FormControlLabel value="male" control={<Radio />} label="М" />
-              <FormControlLabel value="female" control={<Radio />} label="Ж" />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
-      </Grid>
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="first_name"
+                        fullWidth
+                        label="Имя"
+                        autoComplete="given-name"
+                        // error={!!usernameError}
+                        // helperText={usernameError}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="last_name"
+                        label="Фамилия"
+                        fullWidth
+                        autoComplete="family-name"
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="email"
+                        label="Емайл"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="username"
+                        label="Имя пользователя"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        onChange={onChange}
+                        name="address"
+                        label="Ваш Адрес"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="city"
+                        label="Город"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="state"
+                        label="Регион"
+                        fullWidth/>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="country"
+                        label="Страна"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="phone"
+                        label="Номер телефона"
+                        fullWidth/>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="birthday"
+                        label="Дата рождения"
+                        fullWidth/>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={onChange}
+                        name="birthday"
+                        label="Пол"
+                        fullWidth/>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        type="password"
+                        onChange={onChange}
+                        name="birthday"
+                        label="Пароль"
+                        fullWidth/>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        type="password"
+                        onChange={onChange}
+                        name="birthday"
+                        label="Пароль 2"
+                        fullWidth/>
+                </Grid>
+            </Grid><br/>
+            <Box pb={2}>
+                <Button
+                    fullWidth
+                    onClick={actions.register}
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                >
+                    Войти
+                </Button>
+            </Box>
+        </React.Fragment>
+    );
 }
