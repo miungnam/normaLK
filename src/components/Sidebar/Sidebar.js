@@ -1,4 +1,6 @@
 import React,{useEffect} from 'react'
+import "./Sidebar.css"
+import { BrowserRouter, Redirect, Switch, Route, NavLink } from 'react-router-dom'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -17,10 +19,17 @@ import { useMediaQuery } from '@material-ui/core'
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Header from '../Header/Header'
-import ContactInfo from '../ContactInfo/ContactInfo'
-import News from '../News/News'
-import Footer from '../Footer/footer'
+import Profile from "../Profile/Profile"
+import Docs from "../Docs/Docs"
+import Otchets from "../Otchets/Otchets"
+import Machines from "../Machines/Machines"
+import Casses from "../Casses/casses"
+import Company from "../Companies/Companies"
+import Staffs from "../Staffs/Staffs"
+import Todos from "../Todos/Todos"
+import Calendar from "../Calendar/Calendar"
+import Contacts from "../Contacts/Contacts"
+
 
 const drawerWidth = 240
 
@@ -103,6 +112,14 @@ const useStyles = makeStyles((theme) => ({
 	mobileTitle: {
 		marginLeft: 80,
 		marginTop: 0
+	},
+	main_link:{
+		color:"white",
+		fontSize: "1rem",
+		fontFamily: "Roboto", 
+		fontWeight: 400,
+		lineHeight: 1.5,
+		letterSpacing: "0.00938em",
 	}
 }))
 
@@ -110,34 +127,16 @@ export default function MiniDrawer(props) {
 	const classes = useStyles()
 	const theme = useTheme()
 	const [open, setOpen] = React.useState(true)
-	const [isExist, setExist] = React.useState(false)
-	const [user, setUser] = React.useState()
-
 	const MobileVersionPlatform = useMediaQuery('(max-width:768px)')
-
 	const handleDrawerOpen = () => {
 		setOpen(true)
 	}
-
 	const handleDrawerClose = () => {
 		setOpen(false)
 	}
-	useEffect(()=>{
-		fetch(`https://unnamed-project-999.herokuapp.com/api/auth/users/me/?`, {
-			method: 'GET',
-			headers: { 'Authorization': `Token ${window.localStorage.getItem('token')}` },
-		  })
-		.then((response) => response.json())
-		.then((data) =>{
-		 setUser(data)
-		 setExist(true)
-		})
-		  .catch((err)=>{
-			setExist(false)
-		  })
-	},[])
 	return (
-	isExist ?	<div className={classes.root}>
+		<BrowserRouter>
+	<div className={classes.root}>
 			{!MobileVersionPlatform && (
 				<Drawer
 					variant="permanent"
@@ -172,34 +171,26 @@ export default function MiniDrawer(props) {
 								)}
 							</IconButton>
 						</div>
-						<Divider />
+						
 						<List className={classes.toolbar2}>
-							{['Главная', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-								<ListItem button key={text}>
+							{[{text:'Главная',path:'/main/',icon:"fas fa-home"}, {text:'Отчетность',path:"/main/otchets",icon:"far fa-file-word"}, {text:'Документы',path:"/main/docs",icon:"far fa-file-alt"}, {text:'Транспорт',path:"/main/machines",icon:"fas fa-car"},{text:'Кассы',path:"/main/casses",icon:"fas fa-cash-register"}].map((data, index) => (
+								<ListItem button key={data.text}>
 									<ListItemIcon>
-										{index % 2 === 0 ? (
-											<InboxIcon style={{ color: 'white' }} />
-										) : (
-											<MailIcon style={{ color: 'white' }} />
-										)}
+									<i class={data.icon}></i>
 									</ListItemIcon>
-									<ListItemText primary={text} />
+									<NavLink className="main_link" activeClassName="main_link_active" to={data.path} exact>{data.text}</NavLink>
 								</ListItem>
 							))}
 						</List>
-						<Divider />
+						
 						<List className={classes.toolbar3}>
-							{['All mail', 'Trash', 'Spam'].map((text, index) => (
-								<ListItem button key={text}>
-									<ListItemIcon>
-										{index % 2 === 0 ? (
-											<InboxIcon style={{ color: 'white' }} />
-										) : (
-											<MailIcon style={{ color: 'white' }} />
-										)}
-									</ListItemIcon>
-									<ListItemText primary={text} />
-								</ListItem>
+							{[{text:'Компания',path:'/main/company',icon:"far fa-building"}, {text:'Сотрудники',path:"/main/staffs",icon:"fas fa-user-friends"}, {text:'Задачи',path:"/main/todos",icon:"fas fa-clipboard-list"}, {text:'Календарь',path:"/main/calendar",icon:"fas fa-calendar-alt"},{text:'Контакты',path:"/main/contacts",icon:"fas fa-comment"}].map((data, index) => (
+								<ListItem button key={data.text}>
+								<ListItemIcon>
+								<i class={data.icon}></i>
+								</ListItemIcon>
+								<NavLink className="main_link" activeClassName="main_link_active" to={data.path} exact>{data.text}</NavLink>
+							</ListItem>
 							))}
 						</List>
 					</div>
@@ -220,7 +211,7 @@ export default function MiniDrawer(props) {
 							</AccordionSummary>
 							<Divider />
 							<List style={{color:"white"}}>
-								{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+								{['Главная', 'Отчетность', 'Документы', 'Транспорт','Компании', 'Сотрудники', 'Задачи', 'Календарь','Контакты'].map((text, index) => (
 									<ListItem button key={text}>
 										<ListItemText primary={text} />
 									</ListItem>
@@ -229,14 +220,22 @@ export default function MiniDrawer(props) {
 						</Accordion>
 					</div>
 				)}
-				<div>
-					<Header />
-					<br />
-					<ContactInfo />
-					<News />
-					<Footer />
+				<div className="main_content_container">
+					<Switch>
+					<Route path="/main/" component={Profile} exact />
+					<Route path="/main/docs"  component={Docs}  />
+					<Route path="/main/otchets"  component={Otchets}  />
+					<Route path="/main/machines"  component={Machines}  />
+					<Route path="/main/casses"  component={Casses}  />
+					<Route path="/main/company"  component={Company}  />
+					<Route path="/main/staffs"  component={Staffs}  />
+					<Route path="/main/todos"  component={Todos}  />
+					<Route path="/main/calendar"  component={Calendar}  />
+					<Route path="/main/contacts"  component={Contacts}  />
+					</Switch>
 				</div>
 			</main>
-		</div>:<div>Не зарегистрирован</div>
+		</div>
+		</BrowserRouter>
 	)
 }

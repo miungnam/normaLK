@@ -1,7 +1,8 @@
 import React from 'react'
 import './App.css'
-import Main from './components/Main/Main'
+import Sidebar from './components/Sidebar/Sidebar'
 import Login from './redux/containers/LoginContainer/login'
+import Main from './components/Profile/Profile'
 import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom'
 import Registrationn from './redux/containers/Register/Register'
 
@@ -12,7 +13,7 @@ const App = () => {
 				<Switch>
 					<Route path="/auth" component={Registrationn} exact />
 					<Route path="/login" component={Login} exact />
-					<Route path="/main" component={Main} exact />
+					<Route path="/main" component={Sidebar} exact />
 					<Redirect to="/login" />
 				</Switch>
 			</div>
