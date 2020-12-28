@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) =>
     }),
 );
 
-export default function HeaderForm() {
+export default function HeaderForm(props) {
     const classes = useStyles();
 
     return (
@@ -55,7 +55,7 @@ export default function HeaderForm() {
                         <AccountBoxIcon className={classes.icon}/>
                     </div>
                     <div display="block" justifyContent="center">
-                        <Typography style={{color: 'black'}} variant="h5" component="h4"><strong>Акматалиев Баястан Бакытбекович</strong></Typography>
+                        <Typography style={{color: 'black'}} variant="h5" component="h4"><strong>{`${props.userData.first_name} ${props.userData.last_name}`}</strong></Typography>
                         <Box className={classes.header_resp} display="flex" flexWrap justifyContent="flex-start" m={1} p={1}>
                             <Button style={{color: 'black'}}> О себе</Button>
                             <Button style={{color: 'black'}}>Группы</Button>

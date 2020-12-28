@@ -26,14 +26,14 @@ const Login = (props) => {
 					console.log('NICE LOGIN')
 					window.localStorage.setItem('token', data.token)
 				})
+				.then((data)=>{
+					document.location.href = '/main'
+				})
 				.catch((err) => {
 					console.log('BAD LOGIN')
 				})
 		}
 	}
-	React.useEffect(()=>{
-		dispatch(getData(window.localStorage.getItem("token")))
-		 },[getData,window.localStorage])
 	return (
 		<div className="login-body">
 			<Card className="login-container">

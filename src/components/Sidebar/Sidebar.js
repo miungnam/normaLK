@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -107,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function MiniDrawer(props) {
+	const userData = useSelector(state=>state.getUserData.data)
 	const classes = useStyles()
 	const theme = useTheme()
 	const [open, setOpen] = React.useState(true)
@@ -221,9 +223,9 @@ export default function MiniDrawer(props) {
 					</div>
 				)}
 				<div>
-					<Header />
+					<Header userData={userData} />
 					<br />
-					<ContactInfo />
+					<ContactInfo userData={userData} />
 					<News />
 					<Footer />
 				</div>

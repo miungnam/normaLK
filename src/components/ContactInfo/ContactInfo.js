@@ -37,13 +37,10 @@ const useStyles = makeStyles({
 })
 
 
-export default function ContactInfo(props) {
+export default function ContactInfo({userData}) {
   const classes = useStyles();
-
   const MobileVersionPlatform = useMediaQuery('(max-width:950px)')
-
   return (
-
     <Card className={classes.root} >
       <CardActionArea >
         <CardContent className={classes.roott} >
@@ -60,27 +57,27 @@ export default function ContactInfo(props) {
           >
             <Grid item xs={12} sm={4} xl={2} lg={2} md={2}>
               <Typography className={classes.root1} variant="body1" color="textSecondary" component="p" align="center" display="inline" >
-                <p className="categoryItem">Email/Соц.сети:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">emir.azimov@gmail.com</p>}
+                <p className="categoryItem">Email/Соц.сети:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">{userData.email}</p>}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4} xl={2} lg={2} md={2}>
               <Typography className={classes.root2} variant="body1" color="textSecondary" component="p" align="center" display="inline" >
-                <p className="categoryItem">Номер телефона:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">+996703878545</p>}
+                <p className="categoryItem">Номер телефона:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">{userData.phone}</p>}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4} xl={2} lg={2} md={2}>
               <Typography className={classes.root3} variant="body1" color="textSecondary" component="p" align="center" display="inline" >
-                <p className="categoryItem">Дата рождения:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">15.10.1998</p>}
+                <p className="categoryItem">Дата рождения:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">{userData.birthday}</p>}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4} xl={2} lg={2} md={2}>
               <Typography className={classes.root4} variant="body1" color="textSecondary" component="p" align="center" display="inline">
-                <p className="categoryItem">Город:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">г.Бишкек</p>}
+                <p className="categoryItem">Город:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">г.{userData.city}</p>}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4} xl={2} lg={2} md={2}>
               <Typography className={classes.root5} variant="body1" color="textSecondary" component="p" align="center" display="inline">
-                <p className="categoryItem">Пол:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">Мужчина</p>}
+                <p className="categoryItem">Пол:</p>{MobileVersionPlatform && <p className="itemsPlatfrom">{userData.gender=="Male"?"Мужчина":"Женщина"}</p>}
               </Typography>
             </Grid>
           </Grid>

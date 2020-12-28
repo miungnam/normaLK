@@ -19,7 +19,6 @@ export const getData = (token) => (dispatch) => {
 		.then((response) => checkResponse(response, 'Ошибка'))
 		.then((data) => {
 			dispatch({ type: constants.GET_DATA_SUCCESS, data })
-			console.log(token)
 		})
 		.catch((error) => {
 			dispatch({ type: constants.GET_DATA_FAILED, error: errorHandler(error) })

@@ -23,7 +23,7 @@ const News = () => {
 		<div className="news_block">
             <div className="news_block_row">
             {products.slice(pagination.start, pagination.end).map((posts) => (
-				<div onClick={() => handleClick(posts)} className="news_card" key={posts.title}>
+				<div onClick={() => handleClick(posts)} className="news_card" key={posts.name}>
 					<div className="news_img">
 						<img src={posts.image} alt={posts.name} />
 					</div>
