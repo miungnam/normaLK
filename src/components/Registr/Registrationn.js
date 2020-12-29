@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     width: 'auto',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    marginTop: 130,
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: 'auto',
@@ -54,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Registrationn() {
   const classes = useStyles();
   return (
-    <div className="login-body">
+    <div className="reg-body">
       <CssBaseline />
       <AppBar position="absolute" color="default" className={classes.appBar}>
       </AppBar>

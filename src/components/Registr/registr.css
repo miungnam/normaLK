@@ -1,8 +1,9 @@
-.login-body {
+.reg-body {
     background: url(../Login/login-background-1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh;
     max-width: 100vw;
+    min-height: 100vh;
+    padding-bottom: 30px;
 }
