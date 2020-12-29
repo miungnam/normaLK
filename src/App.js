@@ -21,6 +21,9 @@ const App = () => {
 					{window.localStorage.getItem('token') != 'undefined' && window.localStorage.getItem('token') && (
 						<Route path="/main" component={Main} exact />
 					)}
+						{window.localStorage.getItem('token') != 'undefined' && window.localStorage.getItem('token') && (
+						<Redirect to="/main" />
+					)}
 					<Redirect to="/login" />
 				</Switch>
 			</div>
