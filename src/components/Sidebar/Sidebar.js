@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import "./Sidebar.css"
-import { BrowserRouter, Redirect, Switch, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom'
 import clsx from 'clsx'
+import {  useDispatch } from 'react-redux'
+import { logout} from "../../redux/actions/index"
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
@@ -12,9 +14,6 @@ import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
 import { useMediaQuery } from '@material-ui/core'
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
@@ -125,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MiniDrawer(props) {
 	const classes = useStyles()
-	const theme = useTheme()
+	const dispatch = useDispatch()
 	const [open, setOpen] = React.useState(true)
 	const MobileVersionPlatform = useMediaQuery('(max-width:768px)')
 	const handleDrawerOpen = () => {
@@ -192,6 +191,7 @@ export default function MiniDrawer(props) {
 										<NavLink className="main_link" activeClassName="main_link_active" to={data.path} exact>{data.text}</NavLink>
 									</ListItem>
 								))}
+								<div onClick={()=>dispatch(logout())} className="logout"><i className="fas fa-sign-out-alt"/> Выйти</div>
 							</List>
 						</div>
 					</Drawer>
@@ -211,11 +211,16 @@ export default function MiniDrawer(props) {
 								</AccordionSummary>
 								<Divider />
 								<List style={{ color: "white" }}>
-									{['Главная', 'Отчетность', 'Документы', 'Транспорт', 'Компании', 'Сотрудники', 'Задачи', 'Календарь', 'Контакты'].map((text, index) => (
-										<ListItem button key={text}>
-											<ListItemText primary={text} />
-										</ListItem>
-									))}
+								{[{text: 'Главная', path: '/main/', icon: "fas fa-home" }, { text: 'Отчетность', path: "/main/otchets", icon: "far fa-file-word" }, { text: 'Документы', path: "/main/docs", icon: "far fa-file-alt" }, { text: 'Транспорт', path: "/main/machines", icon: "fas fa-car" }, { text: 'Кассы', path: "/main/casses", icon: "fas fa-cash-register", text: 'Компания', path: '/main/company', icon: "far fa-building" }, { text: 'Сотрудники', path: "/main/employees", icon: "fas fa-user-friends" }, { text: 'Задачи', path: "/main/todos", icon: "fas fa-clipboard-list" }, { text: 'Календарь', path: "/main/calendar", icon: "fas fa-calendar-alt" }, { text: 'Контакты', path: "/main/contacts", icon: "fas fa-comment" }].map((data, index) => (
+									<ListItem button key={data.text}>
+										<ListItemIcon>
+											<i className={data.icon}></i>
+										</ListItemIcon>
+										<NavLink className="main_link" activeClassName="main_link_active" to={data.path} exact>{data.text}</NavLink>
+									
+									</ListItem>
+								))}
+									<div onClick={()=>dispatch(logout())} className="logout"><i className="fas fa-sign-out-alt"/> Выйти</div>
 								</List>
 							</Accordion>
 						</div>

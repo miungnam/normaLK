@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Registrationn(props) {
+export default function Registrationn() {
   const classes = useStyles();
   return (
     <div className="login-body">
@@ -64,7 +64,7 @@ export default function Registrationn(props) {
             Регистрация
           </Typography>
           <React.Fragment>
-            <Registration {...props} />
+            <Registration />
           </React.Fragment>
         </Paper>
       </main>
