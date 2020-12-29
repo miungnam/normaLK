@@ -1,6 +1,6 @@
 import React from 'react'
+import { getData,login } from '../../redux/actions/index'
 import { useSelector, useDispatch } from 'react-redux'
-import { getData } from '../../redux/actions/index'
 import point from '../../point'
 import TextField from '@material-ui/core/TextField'
 import './login.css'
@@ -11,27 +11,11 @@ import { NavLink } from 'react-router-dom'
 
 const Login = (props) => {
 	const dispatch = useDispatch()
-	const state = useSelector((state) => state.getUserData)
 	const [email, setEmail] = React.useState('')
 	const [password, setPassword] = React.useState('')
 	const handleClick = () => {
 		if (email.length > 2 && password.length > 2) {
-			fetch(`${point}/api/auth/users/login/`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email, password })
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					console.log('NICE LOGIN')
-					window.localStorage.setItem('token', data.token)
-				})
-				.then((data)=>{
-					document.location.href = '/main'
-				})
-				.catch((err) => {
-					console.log('BAD LOGIN')
-				})
+			dispatch(login({email,password}))
 		}
 	}
 	return (

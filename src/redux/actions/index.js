@@ -1,1 +1,1 @@
-export * from './getUserData.js'
+export * from './getAndLogin.js'

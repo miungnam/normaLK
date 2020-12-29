@@ -108,7 +108,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function MiniDrawer(props) {
-	const userData = useSelector(state=>state.getUserData.data)
+const userData = useSelector(state=>state.data.userData)
+
 	const classes = useStyles()
 	const theme = useTheme()
 	const [open, setOpen] = React.useState(true)
@@ -223,9 +224,9 @@ export default function MiniDrawer(props) {
 					</div>
 				)}
 				<div>
-					<Header userData={userData} />
+					<Header userData={userData}/>
 					<br />
-					<ContactInfo userData={userData} />
+					<ContactInfo userData={userData}/>
 					<News />
 					<Footer />
 				</div>
