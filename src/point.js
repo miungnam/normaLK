@@ -1,2 +1,2 @@
-const point = 'https://unnamed-project-999.herokuapp.com'
+const point = 'https://newnorma.tmg.kg'
 export default point

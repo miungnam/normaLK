@@ -24,7 +24,7 @@ export default function Registration() {
 	const [last_name, setSurame] = React.useState('')
 	const [email, setEmail] = React.useState('')
 	const [username, setUsername] = React.useState('')
-	const [city, setCity] = React.useState('')
+	const [city, setCity] = React.useState('Bishkek')
 	const [address, setAddress] = React.useState('')
 	const [phone, setPhone] = React.useState('')
 	const [birthday, setBirthday] = React.useState('')
@@ -107,7 +107,7 @@ export default function Registration() {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						name="email"
-						label="Емайл"
+						label="Почта"
 						fullWidth
 					/>
 				</Grid>
@@ -118,16 +118,6 @@ export default function Registration() {
 						onChange={(e) => setUsername(e.target.value)}
 						name="username"
 						label="Имя пользователя"
-						fullWidth
-					/>
-				</Grid>
-				<Grid item xs={12} sm={6}>
-					<TextField
-						required
-						value={city}
-						onChange={(e) => setCity(e.target.value)}
-						name="city"
-						label="Город"
 						fullWidth
 					/>
 				</Grid>

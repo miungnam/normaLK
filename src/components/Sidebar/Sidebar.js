@@ -1,9 +1,9 @@
 import React from 'react'
-import "./Sidebar.css"
+import './Sidebar.css'
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom'
 import clsx from 'clsx'
-import {  useDispatch } from 'react-redux'
-import { logout} from "../../redux/actions/index"
+import { useDispatch } from 'react-redux'
+import { logout } from '../../redux/actions/index'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
@@ -18,17 +18,16 @@ import { useMediaQuery } from '@material-ui/core'
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Profile from "../Profile/Profile"
-import Docs from "../Docs/Docs"
-import Otchets from "../Otchets/Otchets"
-import Machines from "../Machines/Machines"
-import Casses from "../Casses/casses"
-import Company from "../Companies/Companies"
-import Todos from "../Todos/Todos"
-import Calendar from "../Calendar/Calendar"
-import ContactChat from "../Contacts/Contacts"
+import Profile from '../Profile/Profile'
+import Docs from '../Docs/Docs'
+import Otchets from '../Otchets/Otchets'
+import Machines from '../Machines/Machines'
+import Casses from '../Casses/casses'
+import Company from '../Companies/Companies'
+import Todos from '../Todos/Todos'
+import Calendar from '../Calendar/Calendar'
+import ContactChat from '../Contacts/Contacts'
 import Employees from '../Employees/Employees'
-
 
 const drawerWidth = 240
 
@@ -113,12 +112,12 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: 0
 	},
 	main_link: {
-		color: "white",
-		fontSize: "1rem",
-		fontFamily: "Roboto",
+		color: 'white',
+		fontSize: '1rem',
+		fontFamily: 'Roboto',
 		fontWeight: 400,
 		lineHeight: 1.5,
-		letterSpacing: "0.00938em",
+		letterSpacing: '0.00938em'
 	}
 }))
 
@@ -166,29 +165,55 @@ export default function MiniDrawer(props) {
 									{open === false ? (
 										<MenuIcon style={{ color: 'white' }} />
 									) : (
-											<ChevronLeftIcon style={{ color: 'white' }} />
-										)}
+										<ChevronLeftIcon style={{ color: 'white' }} />
+									)}
 								</IconButton>
 							</div>
 
 							<List className={classes.toolbar2}>
-								{[{ text: 'Главная', path: '/main/', icon: "fas fa-home" }, { text: 'Отчетность', path: "/main/otchets", icon: "far fa-file-word" }, { text: 'Документы', path: "/main/docs", icon: "far fa-file-alt" }, { text: 'Транспорт', path: "/main/machines", icon: "fas fa-car" }, { text: 'Кассы', path: "/main/casses", icon: "fas fa-cash-register" }].map((data, index) => (
+								{[
+									{ text: 'Главная', path: '/main/', icon: 'fas fa-home' },
+									{ text: 'Отчетность', path: '/main/otchets', icon: 'far fa-file-word' },
+									{ text: 'Документы', path: '/main/docs', icon: 'far fa-file-alt' },
+									{ text: 'Транспорт', path: '/main/machines', icon: 'fas fa-car' },
+									{ text: 'Кассы', path: '/main/casses', icon: 'fas fa-cash-register' }
+								].map((data, index) => (
 									<ListItem button key={data.text}>
 										<ListItemIcon>
-											<i class={data.icon}></i>
+											<i className={data.icon}></i>
 										</ListItemIcon>
-										<NavLink className="main_link" activeClassName="main_link_active" to={data.path} exact>{data.text}</NavLink>
+										<NavLink
+											className="main_link"
+											activeClassName="main_link_active"
+											to={data.path}
+											exact
+										>
+											{data.text}
+										</NavLink>
 									</ListItem>
 								))}
 							</List>
 
 							<List className={classes.toolbar3}>
-								{[{ text: 'Компания', path: '/main/company', icon: "far fa-building" }, { text: 'Сотрудники', path: "/main/employees", icon: "fas fa-user-friends" }, { text: 'Задачи', path: "/main/todos", icon: "fas fa-clipboard-list" }, { text: 'Календарь', path: "/main/calendar", icon: "fas fa-calendar-alt" }, { text: 'Контакты', path: "/main/contacts", icon: "fas fa-comment" }].map((data, index) => (
+								{[
+									{ text: 'Компания', path: '/main/company', icon: 'far fa-building' },
+									{ text: 'Сотрудники', path: '/main/employees', icon: 'fas fa-user-friends' },
+									{ text: 'Задачи', path: '/main/todos', icon: 'fas fa-clipboard-list' },
+									{ text: 'Календарь', path: '/main/calendar', icon: 'fas fa-calendar-alt' },
+									{ text: 'Контакты', path: '/main/contacts', icon: 'fas fa-comment' }
+								].map((data, index) => (
 									<ListItem button key={data.text}>
 										<ListItemIcon>
-											<i class={data.icon}></i>
+											<i className={data.icon}></i>
 										</ListItemIcon>
-										<NavLink className="main_link" activeClassName="main_link_active" to={data.path} exact>{data.text}</NavLink>
+										<NavLink
+											className="main_link"
+											activeClassName="main_link_active"
+											to={data.path}
+											exact
+										>
+											{data.text}
+										</NavLink>
 									</ListItem>
 								))}
 								<div onClick={()=>dispatch(logout())} className="logout"><i className="fas fa-sign-out-alt"/> Выйти</div>
@@ -200,27 +225,60 @@ export default function MiniDrawer(props) {
 				<main className={classes.content}>
 					{MobileVersionPlatform && (
 						<div className={classes.root2}>
-							<Accordion style={{ background: "linear-gradient(rgb(55, 79, 107) 41.15%, rgba(55, 79, 107, 0.64) 100%)", marginTop: "-10px" }}>
+							<Accordion
+								style={{
+									background:
+										'linear-gradient(rgb(55, 79, 107) 41.15%, rgba(55, 79, 107, 0.64) 100%)',
+									marginTop: '-10px'
+								}}
+							>
 								<AccordionSummary
 									aria-controls="panel1a-content"
 									id="panel1a-header"
-									expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+									expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
 								>
-									<MenuIcon style={{ color: "white" }} />
-									<Typography style={{ color: "white" }} className={classes.mobileTitle}>Личный кабинет</Typography>
+									<MenuIcon style={{ color: 'white' }} />
+									<Typography style={{ color: 'white' }} className={classes.mobileTitle}>
+										Личный кабинет
+									</Typography>
 								</AccordionSummary>
 								<Divider />
-								<List style={{ color: "white" }}>
-								{[{text: 'Главная', path: '/main/', icon: "fas fa-home" }, { text: 'Отчетность', path: "/main/otchets", icon: "far fa-file-word" }, { text: 'Документы', path: "/main/docs", icon: "far fa-file-alt" }, { text: 'Транспорт', path: "/main/machines", icon: "fas fa-car" }, { text: 'Кассы', path: "/main/casses", icon: "fas fa-cash-register", text: 'Компания', path: '/main/company', icon: "far fa-building" }, { text: 'Сотрудники', path: "/main/employees", icon: "fas fa-user-friends" }, { text: 'Задачи', path: "/main/todos", icon: "fas fa-clipboard-list" }, { text: 'Календарь', path: "/main/calendar", icon: "fas fa-calendar-alt" }, { text: 'Контакты', path: "/main/contacts", icon: "fas fa-comment" }].map((data, index) => (
-									<ListItem button key={data.text}>
-										<ListItemIcon>
-											<i className={data.icon}></i>
-										</ListItemIcon>
-										<NavLink className="main_link" activeClassName="main_link_active" to={data.path} exact>{data.text}</NavLink>
-									
-									</ListItem>
-								))}
-									<div onClick={()=>dispatch(logout())} className="logout"><i className="fas fa-sign-out-alt"/> Выйти</div>
+								<List style={{ color: 'white' }}>
+									{[
+										{ text: 'Главная', path: '/main/', icon: 'fas fa-home' },
+										{ text: 'Отчетность', path: '/main/otchets', icon: 'far fa-file-word' },
+										{ text: 'Документы', path: '/main/docs', icon: 'far fa-file-alt' },
+										{ text: 'Транспорт', path: '/main/machines', icon: 'fas fa-car' },
+										{
+											text: 'Кассы',
+											path: '/main/casses',
+											icon: 'fas fa-cash-register',
+											text: 'Компания',
+											path: '/main/company',
+											icon: 'far fa-building'
+										},
+										{ text: 'Сотрудники', path: '/main/employees', icon: 'fas fa-user-friends' },
+										{ text: 'Задачи', path: '/main/todos', icon: 'fas fa-clipboard-list' },
+										{ text: 'Календарь', path: '/main/calendar', icon: 'fas fa-calendar-alt' },
+										{ text: 'Контакты', path: '/main/contacts', icon: 'fas fa-comment' }
+									].map((data, index) => (
+										<ListItem button key={data.text}>
+											<ListItemIcon>
+												<i className={data.icon}></i>
+											</ListItemIcon>
+											<NavLink
+												className="main_link"
+												activeClassName="main_link_active"
+												to={data.path}
+												exact
+											>
+												{data.text}
+											</NavLink>
+										</ListItem>
+									))}
+									<div onClick={() => dispatch(logout())} className="logout">
+										<i className="fas fa-sign-out-alt" /> Выйти
+									</div>
 								</List>
 							</Accordion>
 						</div>
