@@ -1,6 +1,6 @@
 import React from 'react'
 import { login } from '../../redux/actions/index'
-import {  useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import './login.css'
 import Box from '@material-ui/core/Box'
@@ -10,24 +10,32 @@ import { NavLink } from 'react-router-dom'
 
 const Login = (props) => {
 	const dispatch = useDispatch()
-	const error = useSelector(state=>state.data.login.failed)
-	const [email, setEmail] = React.useState('')
-	const [password, setPassword] = React.useState('')
-	const handleClick = () => {
-		if (email.length > 2 && password.length > 2) {
-			dispatch(login({email,password}))
+	const error = useSelector((state) => state.data.login.failed)
+	const [data, setData] = React.useState({ email: '', password: '' })
+	const [valid, setValid] = React.useState(false)
+	React.useEffect(() => {
+		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		if (
+			data.email.length &&
+			data.password.length &&
+			re.test(String(data.email).toLowerCase()) &&
+			data.password.length > 7
+		) {
+			setValid(true)
+		} else {
+			setValid(false)
 		}
-	}
+	}, [data.email, data.password])
 	return (
 		<div className="login-body">
 			<Card className="login-container">
 				<Box>
-					<h1 className="login-title">Login</h1>
+					<h1 className="login-title">Войти</h1>
 				</Box>
 				<Box pt={2} pb={2}>
 					<TextField
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						value={data.email}
+						onChange={(e) => setData({ ...data, email: e.target.value })}
 						variant="outlined"
 						margin="normal"
 						name="login"
@@ -35,8 +43,8 @@ const Login = (props) => {
 						label="Почта"
 					/>
 					<TextField
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
+						value={data.password}
+						onChange={(e) => setData({ ...data, password: e.target.value })}
 						name="password"
 						variant="outlined"
 						margin="normal"
@@ -46,13 +54,19 @@ const Login = (props) => {
 					/>
 				</Box>
 				<Box pb={2}>
-					<Button onClick={handleClick} variant="contained" color="primary" type="submit">
+					<Button
+						disabled={!valid}
+						onClick={() => dispatch(login(data))}
+						variant="contained"
+						color="primary"
+						type="submit"
+					>
 						Войти
 					</Button>
 					<div className="auth-link">
 						<NavLink to="/auth">Хотите зарегистрироваться?</NavLink>
 					</div>
-					{error&&<div className="login_error">Неправильный логин или пароль</div>}
+					{error && <div className="login_error">Неправильный логин или пароль</div>}
 				</Box>
 			</Card>
 		</div>

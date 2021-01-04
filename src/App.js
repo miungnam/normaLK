@@ -12,7 +12,7 @@ const App = () => {
 	const token = useSelector((state) => state.data.token)
 	const loginSuccess = useSelector((state) => state.data.login.success)
 	const getSuccess = useSelector((state) => state.data.get.success)
-	const authSuccess = useSelector((state) => state.data.auth)
+	const authSuccess = useSelector((state) => state.data.auth.success)
 	React.useEffect(() => {
 		dispatch(getData(window.localStorage.getItem('token') || token))
 	}, [getData, window.localStorage.getItem('token'), login, token,logout])

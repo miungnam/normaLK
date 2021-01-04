@@ -1,100 +1,79 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
-import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth } from '../../redux/actions/index'
 
-const useStyles = makeStyles({
-	radio: {
-		textAlign: 'left',
-		marginRight: 476
-	},
-	label: {
-		fontSize: 1
-	}
-})
-
 export default function Registration() {
 	const dispatch = useDispatch()
-	const classes = useStyles()
-	const [first_name, setName] = React.useState('')
-	const [last_name, setSurame] = React.useState('')
-	const [email, setEmail] = React.useState('')
-	const [username, setUsername] = React.useState('')
-	const [city, setCity] = React.useState('Bishkek')
-	const [address, setAddress] = React.useState('')
-	const [phone, setPhone] = React.useState('')
-	const [birthday, setBirthday] = React.useState('')
-	const [password, setPassword] = React.useState('')
-	const [password2, setPassword2] = React.useState('')
-	const [country, setCountry] = React.useState('Кыргызстан')
-	const [gender, setGender] = React.useState('Male')
-	const [state, setState] = React.useState('KG')
+	const authLoading = useSelector((state) => state.data.auth.loading)
+	const [data, setData] = React.useState({
+		first_name: '',
+		last_name: '',
+		email: '',
+		username: '',
+		city: 'Bishkek',
+		address: '',
+		phone: '',
+		birthday: '',
+		country: 'Kyrgyzstan',
+		password: '',
+		password2: '',
+		gender: 'Male',
+		state: 'KG'
+	})
 	const [valid, setValid] = React.useState(false)
 	React.useEffect(() => {
 		if (
-			first_name.length > 3 &&
-			last_name.length > 3 &&
-			email.length > 5 &&
-			username.length > 5 &&
-			city.length > 3 &&
-			phone.length > 9 &&
-			birthday.length > 5 &&
-			password.length > 8 &&
-			address.length > 6 &&
-			password2.length > 8 &&
-			password == password2
+			data.first_name.length > 3 &&
+			data.last_name.length > 3 &&
+			data.email.length > 5 &&
+			data.username.length > 5 &&
+			data.city.length > 3 &&
+			data.phone.length > 9 &&
+			data.birthday.length > 5 &&
+			data.password.length > 8 &&
+			data.address.length > 6 &&
+			data.password2.length > 8 &&
+			data.password == data.password2
 		) {
 			setValid(true)
 		} else {
 			setValid(false)
 		}
-	}, [first_name, last_name, username, email, city, phone, birthday, password, password2, address])
-	const handleClick = () => {
-		if (valid) {
-			dispatch(
-				auth({
-					first_name,
-					last_name,
-					username,
-					email,
-					city,
-					phone,
-					birthday,
-					password,
-					password2,
-					state,
-					country,
-					gender,
-					address
-				})
-			)
-		}
-	}
+	}, [
+		data.first_name,
+		data.last_name,
+		data.username,
+		data.email,
+		data.city,
+		data.phone,
+		data.birthday,
+		data.password,
+		data.password2,
+		data.address
+	])
 	return (
 		<React.Fragment>
 			<Grid container spacing={3}>
 				<Grid item xs={12} sm={6}>
 					<TextField
 						required
-						value={first_name}
-						onChange={(e) => setName(e.target.value)}
+						value={data.first_name}
+						onChange={(e) => setData({ ...data, first_name: e.target.value })}
 						name="first_name"
 						fullWidth
 						label="Имя"
 						autoComplete="given-name"
-						// error={!!usernameError}
-						// helperText={usernameError}
 					/>
 				</Grid>
 				<Grid item xs={12} sm={6}>
 					<TextField
 						required
-						value={last_name}
-						onChange={(e) => setSurame(e.target.value)}
+						value={data.last_name}
+						onChange={(e) => setData({ ...data, last_name: e.target.value })}
 						name="last_name"
 						label="Фамилия"
 						fullWidth
@@ -104,8 +83,8 @@ export default function Registration() {
 				<Grid item xs={12} sm={6}>
 					<TextField
 						required
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						value={data.email}
+						onChange={(e) => setData({ ...data, email: e.target.value })}
 						name="email"
 						label="Почта"
 						fullWidth
@@ -114,8 +93,8 @@ export default function Registration() {
 				<Grid item xs={12} sm={6}>
 					<TextField
 						required
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
+						value={data.username}
+						onChange={(e) => setData({ ...data, username: e.target.value })}
 						name="username"
 						label="Имя пользователя"
 						fullWidth
@@ -124,8 +103,8 @@ export default function Registration() {
 				<Grid item xs={12} sm={6}>
 					<TextField
 						required
-						value={address}
-						onChange={(e) => setAddress(e.target.value)}
+						value={data.address}
+						onChange={(e) => setData({ ...data, address: e.target.value })}
 						name="address"
 						label="Адрес"
 						fullWidth
@@ -134,8 +113,8 @@ export default function Registration() {
 				<Grid item xs={12} sm={6}>
 					<TextField
 						required
-						value={phone}
-						onChange={(e) => setPhone(e.target.value)}
+						value={data.phone}
+						onChange={(e) => setData({ ...data, phone: e.target.value })}
 						name="phone"
 						label="Номер телефона"
 						fullWidth
@@ -144,8 +123,8 @@ export default function Registration() {
 				<Grid item xs={12} sm={6}>
 					<TextField
 						required
-						value={birthday}
-						onChange={(e) => setBirthday(e.target.value)}
+						value={data.birthday}
+						onChange={(e) => setData({ ...data, birthday: e.target.value })}
 						name="birthday"
 						label="Дата рождения"
 						fullWidth
@@ -155,8 +134,8 @@ export default function Registration() {
 					<TextField
 						required
 						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
+						value={data.password}
+						onChange={(e) => setData({ ...data, password: e.target.value })}
 						name="birthday"
 						label="Пароль"
 						fullWidth
@@ -166,8 +145,8 @@ export default function Registration() {
 					<TextField
 						required
 						type="password"
-						value={password2}
-						onChange={(e) => setPassword2(e.target.value)}
+						value={data.password2}
+						onChange={(e) => setData({ ...data, password2: e.target.value })}
 						name="birthday"
 						label="Пароль еще раз"
 						fullWidth
@@ -179,12 +158,12 @@ export default function Registration() {
 				<Button
 					disabled={!valid}
 					fullWidth
-					onClick={handleClick}
+					onClick={() => {dispatch(auth(data))}}
 					variant="contained"
 					color="primary"
 					type="submit"
 				>
-					Войти
+					{authLoading ? 'Загрузка...' : 'Зарегистрироваться'}
 				</Button>
 			</Box>
 		</React.Fragment>

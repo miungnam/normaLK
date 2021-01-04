@@ -12,7 +12,11 @@ const initialState = {
 		loading: false,
 		failed: false
 	},
-	auth:false,
+	auth:{
+		success: false,
+		loading: false,
+		failed: false
+	},
 	token: ''
 }
 
@@ -90,16 +94,32 @@ const reducer = (state = initialState, action) => {
 				},
 				token: ''
 			}
-
+			case constants.AUTH_LOADING:
+				return {
+					...state,
+					auth:{
+						success: false,
+						loading: true,
+						failed: false
+					}
+				}
 			case constants.AUTH_SUCCESS:
 			return {
 				...state,
-				auth:true
+				auth:{
+					success: true,
+					loading: false,
+					failed: false
+				}
 			}
 		case constants.AUTH_FAILED:
 			return {
 				...state,
-				auth:false
+				auth:{
+					success: false,
+					loading: false,
+					failed: true
+				}
 			}
 		default:
 			return state

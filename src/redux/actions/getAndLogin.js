@@ -47,6 +47,7 @@ export const login = (data) => (dispatch) => {
 }
 
 export const auth = (data) => (dispatch) => {
+	dispatch({ type: constants.AUTH_LOADING })
 	fetch(`${point}/api/auth/users/registration/`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -54,7 +55,6 @@ export const auth = (data) => (dispatch) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			dispatch({ type: constants.AUTH_SUCCESS })
 		})
 		.catch((err) => {
