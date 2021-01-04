@@ -12,7 +12,6 @@ const App = () => {
 	const token = useSelector((state) => state.data.token)
 	const loginSuccess = useSelector((state) => state.data.login.success)
 	const getSuccess = useSelector((state) => state.data.get.success)
-	const authSuccess = useSelector((state) => state.data.auth.success)
 	React.useEffect(() => {
 		dispatch(getData(window.localStorage.getItem('token') || token))
 	}, [getData, window.localStorage.getItem('token'), login, token,logout])
@@ -20,7 +19,7 @@ const App = () => {
 		<BrowserRouter>
 			<div className="app">
 				<Switch>
-					{!authSuccess&&<Route path="/auth" component={Registration} exact />}
+					<Route path="/auth" component={Registration} exact />
 					{(loginSuccess || getSuccess) && <Route path="/main" component={Sidebar} exact />}
 					{(loginSuccess || getSuccess) && <Redirect to="/main" />}
 					{!loginSuccess && <Route path="/login" component={Login} exact />}

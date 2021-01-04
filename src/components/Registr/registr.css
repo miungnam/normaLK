@@ -7,3 +7,15 @@
     min-height: 100vh;
     padding-bottom: 30px;
 }
+.success-auth{
+    color: #4caf50;
+    margin: 10px 0px 0px 0px ;
+}
+.success-link{
+text-align: center;
+text-decoration: underline;
+}
+.success-error{
+    color: #d32f2f;
+    margin: 10px 0px 0px 0px ;
+}

@@ -26,6 +26,11 @@ const Login = (props) => {
 			setValid(false)
 		}
 	}, [data.email, data.password])
+	const handleKeypress = (e) => {
+		if (e.keyCode === 13 && valid) {
+			dispatch(login(data))
+		}
+	}
 	return (
 		<div className="login-body">
 			<Card className="login-container">
@@ -36,6 +41,7 @@ const Login = (props) => {
 					<TextField
 						value={data.email}
 						onChange={(e) => setData({ ...data, email: e.target.value })}
+						onKeyUp={handleKeypress}
 						variant="outlined"
 						margin="normal"
 						name="login"
@@ -45,6 +51,7 @@ const Login = (props) => {
 					<TextField
 						value={data.password}
 						onChange={(e) => setData({ ...data, password: e.target.value })}
+						onKeyUp={handleKeypress}
 						name="password"
 						variant="outlined"
 						margin="normal"

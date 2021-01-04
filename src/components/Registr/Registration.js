@@ -4,11 +4,14 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { auth } from '../../redux/actions/index'
 
 export default function Registration() {
 	const dispatch = useDispatch()
 	const authLoading = useSelector((state) => state.data.auth.loading)
+	const authSuccess = useSelector((state) => state.data.auth.success)
+	const authError = useSelector((state) => state.data.auth.failed)
 	const [data, setData] = React.useState({
 		first_name: '',
 		last_name: '',
@@ -158,13 +161,41 @@ export default function Registration() {
 				<Button
 					disabled={!valid}
 					fullWidth
-					onClick={() => {dispatch(auth(data))}}
+					onClick={() => {
+						dispatch(auth(data))
+						setData({
+							first_name: '',
+							last_name: '',
+							email: '',
+							username: '',
+							city: 'Bishkek',
+							address: '',
+							phone: '',
+							birthday: '',
+							country: 'Kyrgyzstan',
+							password: '',
+							password2: '',
+							gender: 'Male',
+							state: 'KG'
+						})
+					}}
 					variant="contained"
 					color="primary"
 					type="submit"
 				>
 					{authLoading ? 'Загрузка...' : 'Зарегистрироваться'}
 				</Button>
+				{authSuccess && (
+					<div className="success-auth">
+						Вы успешно зарегистрировались, перейдите на почту и подтвердите аккаунт
+					</div>
+				)}
+				{authSuccess && (
+					<NavLink className="success-link" to="/login">
+						Войти после подтверждения
+					</NavLink>
+				)}
+				{authError && <div className="success-error">Заполните формы заново</div>}
 			</Box>
 		</React.Fragment>
 	)
