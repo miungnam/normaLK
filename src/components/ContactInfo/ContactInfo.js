@@ -1,10 +1,9 @@
 import React from 'react'
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import { withStyles } from '@material-ui/core/styles/withStyles'
 import { useMediaQuery, Grid } from '@material-ui/core'
 import './ContactInfo.css'
 

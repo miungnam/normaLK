@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom'
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/index'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import Typography from '@material-ui/core/Typography'
@@ -216,7 +216,9 @@ export default function MiniDrawer(props) {
 										</NavLink>
 									</ListItem>
 								))}
-								<div onClick={()=>dispatch(logout())} className="logout"><i className="fas fa-sign-out-alt"/> Выйти</div>
+								<div onClick={() => dispatch(logout())} className="logout">
+									<i className="fas fa-sign-out-alt" /> Выйти
+								</div>
 							</List>
 						</div>
 					</Drawer>
@@ -252,10 +254,7 @@ export default function MiniDrawer(props) {
 										{
 											text: 'Кассы',
 											path: '/main/casses',
-											icon: 'fas fa-cash-register',
-											text: 'Компания',
-											path: '/main/company',
-											icon: 'far fa-building'
+											icon: 'fas fa-cash-register'
 										},
 										{ text: 'Сотрудники', path: '/main/employees', icon: 'fas fa-user-friends' },
 										{ text: 'Задачи', path: '/main/todos', icon: 'fas fa-clipboard-list' },

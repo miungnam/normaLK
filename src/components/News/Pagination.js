@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 const Pagination = ({ showPerPage, onPaginationChange, total }) => {
 	const [counter, setCounter] = useState(1)
-	const [numberOfButtons, setNumberOfButoons] = useState(Math.ceil(total / showPerPage))
+	const [numberOfButtons] = useState(Math.ceil(total / showPerPage))
 
 	useEffect(() => {
 		const value = showPerPage * counter
@@ -29,26 +29,26 @@ const Pagination = ({ showPerPage, onPaginationChange, total }) => {
 			<nav aria-label="Page navigation example">
 				<ul className="pagination">
 					<li className="page-item">
-						<a style={{ cursor: 'pointer' }} className="page-link" onClick={() => onButtonClick('prev')}>
+						<span style={{ cursor: 'pointer' }} className="page-link" onClick={() => onButtonClick('prev')}>
 							<i className="fas fa-arrow-left"></i>
-						</a>
+						</span>
 					</li>
 
 					{new Array(numberOfButtons).fill('').map((el, index) => (
 						<li key={index} className={`page-item ${index + 1 === counter ? 'active' : null}`}>
-							<a
+							<span
 								style={{ cursor: 'pointer' }}
 								className="page-link"
 								onClick={() => setCounter(index + 1)}
 							>
 								{index + 1}
-							</a>
+							</span>
 						</li>
 					))}
 					<li className="page-item">
-						<a style={{ cursor: 'pointer' }} className="page-link" onClick={() => onButtonClick('next')}>
+						<span style={{ cursor: 'pointer' }} className="page-link" onClick={() => onButtonClick('next')}>
 							<i className="fas fa-arrow-right"></i>
-						</a>
+						</span>
 					</li>
 				</ul>
 			</nav>
