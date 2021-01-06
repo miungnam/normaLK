@@ -28,7 +28,8 @@ import Todos from '../Todos/Todos'
 import Calendar from '../Calendar/Calendar'
 import ContactChat from '../Contacts/Contacts'
 import Employees from '../Employees/Employees'
-import UpdateProfile from "../Profile/UpdateProfile";
+import UpdateProfile from '../Profile/UpdateProfile'
+import NewsItem from '../News/NewsItem'
 
 const drawerWidth = 240
 
@@ -175,7 +176,7 @@ export default function MiniDrawer(props) {
 									{ text: 'Кассы', path: '/main/casses', icon: 'fas fa-cash-register' }
 								].map((data, index) => (
 									<ListItem button key={data.text}>
-										<ListItemIcon>
+										<ListItemIcon onClick={open === false ? handleDrawerOpen : handleDrawerClose}>
 											<i className={data.icon}></i>
 										</ListItemIcon>
 										<NavLink
@@ -199,7 +200,7 @@ export default function MiniDrawer(props) {
 									{ text: 'Контакты', path: '/main/contacts', icon: 'fas fa-comment' }
 								].map((data, index) => (
 									<ListItem button key={data.text}>
-										<ListItemIcon>
+										<ListItemIcon onClick={open === false ? handleDrawerOpen : handleDrawerClose}>
 											<i className={data.icon}></i>
 										</ListItemIcon>
 										<NavLink
@@ -291,6 +292,7 @@ export default function MiniDrawer(props) {
 							<Route path="/main/calendar" component={Calendar} />
 							<Route path="/main/contacts" component={ContactChat} />
 							<Route path="/main/update-profile" component={UpdateProfile} />
+							<Route path="/news/:id" component={NewsItem} />
 						</Switch>
 					</div>
 				</main>

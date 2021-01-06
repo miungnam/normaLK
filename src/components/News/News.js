@@ -2,15 +2,10 @@ import { useState } from 'react'
 import './news.css'
 import products from '../../products'
 import Pagination from './Pagination'
+import { NavLink } from 'react-router-dom'
 
 const News = () => {
-	const [open, setOpen] = useState(false)
-	const [itemState, setItemState] = useState()
-	const handleClick = (posts) => {
-		setOpen(true)
-		setItemState(posts)
-	}
-	const [showPerPage] = useState(2)
+	const [showPerPage] = useState(4)
 	const [pagination, setPagination] = useState({
 		start: 0,
 		end: showPerPage
@@ -21,36 +16,20 @@ const News = () => {
 	}
 	return (
 		<div className="news_block">
-            <div className="news_block_row">
-            {products.slice(pagination.start, pagination.end).map((posts) => (
-				<div onClick={() => handleClick(posts)} className="news_card" key={posts.name}>
-					<div className="news_img">
-						<img src={posts.image} alt={posts.name} />
-					</div>
-					<h1 className="news_title">{posts.name}</h1>
-					<div className="news_btn" onClick={() => handleClick(posts)}>
-						Показать всю статью
-					</div>
-				</div>
-			))}
-            </div>
-			
-			{open && (
-				<div className="newsItem">
-					<div className="newsItem_block">
-						<div className="newsItem_wrapper">
-							<div className="newsItem_header">
-								<div className="newsitem_header_title">{itemState.name}</div>
-								<i onClick={() => setOpen(false)} style={{color:"black"}} className="fas fa-times"></i>
-							</div>
-							<div className="newsitem_desc">{itemState.description}</div>
-							<div className="newsitem_img">
-								<img src={itemState.image} alt={itemState.title} />
-							</div>
-						</div>
-					</div>
-				</div>
-			)}
+			<h4 className="news_block_h">Новости</h4>
+			<div className="news_block_row">
+				{products.slice(pagination.start, pagination.end).map((posts) => (
+					<NavLink
+						className="newsLink"
+						key={posts._id}
+						to={{ pathname: `/news/${posts._id}`, state: { posts } }}
+					>
+						<div className="news_title">{posts.name}</div> <br />
+						<div className="news_desc">{`${posts.description.substr(0, 150)}...`}</div>
+					</NavLink>
+				))}
+			</div>
+
 			<Pagination showPerPage={showPerPage} onPaginationChange={onPaginationChange} total={products.length} />
 		</div>
 	)

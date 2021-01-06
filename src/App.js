@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar/Sidebar'
 import Registration from './components/Registr/Registrationn'
 import Login from './components/Login/Login'
 import { useDispatch, useSelector } from 'react-redux'
-import { getData, login,logout } from './redux/actions/index'
+import { getData, login, logout } from './redux/actions/index'
 import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom'
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
 	const getSuccess = useSelector((state) => state.data.get.success)
 	React.useEffect(() => {
 		dispatch(getData(window.localStorage.getItem('token') || token))
-	}, [getData, window.localStorage.getItem('token'), login, token,logout])
+	}, [getData, window.localStorage.getItem('token'), login, token, logout])
 	return (
 		<BrowserRouter>
 			<div className="app">
