@@ -6,6 +6,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import {Box} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) =>
@@ -38,8 +39,8 @@ const useStyles = makeStyles((theme) =>
 
 
         },
-        header_resp:{
-            flexWrap:"wrap",
+        header_resp: {
+            flexWrap: "wrap",
         }
     }),
 );
@@ -49,7 +50,8 @@ export default function HeaderForm(props) {
 
     return (
         <div className={classes.root}>
-            <AppBar item xs={12} position="static" style={{background: "linear-gradient(90.08deg, #FFFFFF 14.89%, #E7EAEE 90.07%)"}}>
+            <AppBar item xs={12} position="static"
+                    style={{background: "linear-gradient(90.08deg, #FFFFFF 14.89%, #E7EAEE 90.07%)"}}>
                 <Toolbar variant="dense" className={classes.toolbar}>
                     <div className={classes.icons}>
                         <AccountBoxIcon className={classes.icon}/>
@@ -61,7 +63,7 @@ export default function HeaderForm(props) {
                             <Button style={{color: 'black'}}>Группы</Button>
                             <Button style={{color: 'black'}}>Фото</Button>
                             <Button style={{color: 'black'}}>Подписи</Button>
-                            <Button style={{color: 'black'}}>Настройки</Button>
+                            <Button><Link to={"/main/update-profile"} style={{color: 'black'}}>Настройки</Link></Button>
                         </Box>
                     </div>
                 </Toolbar>
