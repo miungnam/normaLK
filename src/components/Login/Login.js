@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom'
 const Login = (props) => {
 	const dispatch = useDispatch()
 	const error = useSelector((state) => state.data.login.failed)
+	const loading = useSelector((state) => state.data.login.loading)
 	const [data, setData] = React.useState({ email: '', password: '' })
 	const [valid, setValid] = React.useState(false)
 	React.useEffect(() => {
@@ -63,12 +64,15 @@ const Login = (props) => {
 				<Box pb={2}>
 					<Button
 						disabled={!valid}
-						onClick={() => dispatch(login(data))}
+						onClick={() => {
+							dispatch(login(data))
+							setData({...data,email: '', password: '' })
+						}}
 						variant="contained"
 						color="primary"
 						type="submit"
 					>
-						Войти
+						{loading?"Загрузка...":"Войти"}
 					</Button>
 					<div className="auth-link">
 						<NavLink to="/auth">Хотите зарегистрироваться?</NavLink>

@@ -196,6 +196,11 @@ export default function Registration() {
 					</NavLink>
 				)}
 				{authError && <div className="success-error">Заполните формы заново</div>}
+				{!authSuccess && (
+					<NavLink className="login-link" to="/login">
+						Уже есть аккаунт?
+					</NavLink>
+				)}
 			</Box>
 		</React.Fragment>
 	)
