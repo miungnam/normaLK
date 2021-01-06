@@ -77,7 +77,7 @@ export default function ProminentAppBar() {
             <Button color="inherit">Группы</Button>
             <Button color="inherit">Фото</Button>
             <Button color="inherit">Подписи</Button>
-            <Button color="inherit">Настройки</Button>
+            <Button to={"/update-profile"} color="inherit">Настройки</Button>
           </Typography>
         </Toolbar>
       </AppBar>

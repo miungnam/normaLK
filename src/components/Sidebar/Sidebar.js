@@ -28,6 +28,7 @@ import Todos from '../Todos/Todos'
 import Calendar from '../Calendar/Calendar'
 import ContactChat from '../Contacts/Contacts'
 import Employees from '../Employees/Employees'
+import UpdateProfile from "../Profile/UpdateProfile";
 
 const drawerWidth = 240
 
@@ -294,6 +295,7 @@ export default function MiniDrawer(props) {
 							<Route path="/main/todos" component={Todos} />
 							<Route path="/main/calendar" component={Calendar} />
 							<Route path="/main/contacts" component={ContactChat} />
+							<Route path="/main/update-profile" component={UpdateProfile} />
 						</Switch>
 					</div>
 				</main>
