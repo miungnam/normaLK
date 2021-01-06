@@ -13,9 +13,9 @@
     left: 0;
     color: white;
     justify-content: center;
-    height: auto;
+    min-height: 190px;
      background: linear-gradient(270.06deg, #5C5B77 0.06%, #374F6B 98.89%, #DFE7F1 98.89%);
-    overflow: auto;
+     font-size: 14px;
 }
 
 .container {

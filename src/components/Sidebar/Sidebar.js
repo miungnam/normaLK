@@ -33,12 +33,7 @@ const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		display: 'flex',
-		marginTop: 10
-	},
-	root2: {
-		marginTop: -8,
-		marginBottom: 15
+		display: 'flex'
 	},
 	appBar: {
 		zIndex: theme.zIndex.drawer + 1,
@@ -124,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MiniDrawer(props) {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-	const [open, setOpen] = React.useState(true)
+	const [open, setOpen] = React.useState(false)
 	const MobileVersionPlatform = useMediaQuery('(max-width:768px)')
 	const handleDrawerOpen = () => {
 		setOpen(true)
